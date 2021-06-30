@@ -24,7 +24,20 @@ func Test01(t *testing.T) {
 		}
 	}
 	if result != expected {
-	    t.Errorf("Test01 Error")
+		t.Errorf("Test01 Error")
+	}
+
+}
+
+// 標準入力+putの確認
+func Test02(t *testing.T) {
+
+	b := &Board{
+		tokens: []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	}
+	b.input("o")
+	if b.get(1, 2) != "o" {
+		t.Errorf("Test02 Error")
 	}
 
 }

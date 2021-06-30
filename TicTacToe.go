@@ -1,7 +1,7 @@
 package main
 
 import (
-//"fmt"
+	"fmt"
 )
 
 type Board struct {
@@ -23,6 +23,25 @@ func (b *Board) get(x, y int) string {
 	}
 
 	return "x"
+}
+
+func (b *Board) input(u string) {
+	//Player1 がxとする
+	var x, y int
+	if u == "x" {
+		fmt.Printf("Player 1: Input (x,y):")
+	} else if u == "o" {
+		fmt.Printf("Player 2: Input (x,y):")
+	}
+	//test用
+	x = 1
+	y = 2
+	//標準入力から受け取る
+	fmt.Scan(&x)
+	fmt.Scan(&y)
+
+	b.put(x, y, u)
+	return
 }
 
 func main() {
