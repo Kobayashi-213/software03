@@ -41,3 +41,19 @@ func Test02(t *testing.T) {
 	}
 
 }
+
+func Test03(t *testing.T) {
+	expected := 1
+	result := 0
+	b := &Board{
+		tokens: []int{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	}
+	b.put(0, 0, "o")
+	b.put(0, 1, "o")
+	b.put(0, 2, "o")
+	result = b.hantei()
+	if result != expected {
+		t.Errorf("Test03 Error")
+	}
+
+}

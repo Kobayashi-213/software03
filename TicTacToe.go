@@ -12,17 +12,20 @@ func (b *Board) put(x, y int, u string) {
 	if u == "o" {
 		b.tokens[x+3*y] = 1
 	}
+	if u == "x" {
+		b.tokens[x+3*y] = 2
+	}
 }
 
 func (b *Board) get(x, y int) string {
 	if b.tokens[x+3*y] == 1 {
 		return "o"
 	}
-	if b.tokens[x+3*y] == 0 {
+	if b.tokens[x+3*y] == 2 {
+		return "x"
+	} else {
 		return "."
 	}
-
-	return "x"
 }
 
 func (b *Board) input(u string) {
@@ -42,6 +45,48 @@ func (b *Board) input(u string) {
 
 	b.put(x, y, u)
 	return
+}
+
+func (b *Board) hantei() int {
+	for i := 0; i < 3; i++ {
+		s := ""
+		for j := 0; j < 3; j++ {
+			s += b.get(i, j)
+		}
+		if s == "ooo" {
+			return 1
+		} else if s == "xxx" {
+			return 2
+		}
+	}
+
+	for i := 0; i < 3; i++ {
+		s := ""
+		for j := 0; j < 3; j++ {
+			s += b.get(j, i)
+		}
+		if s == "ooo" {
+			return 1
+		} else if s == "xxx" {
+			return 2
+		}
+	}
+	s := ""
+	s = b.get(0, 0) + b.get(1, 1) + b.get(2, 2)
+	if s == "ooo" {
+		return 1
+	} else if s == "xxx" {
+		return 2
+	}
+
+	s = ""
+	s = b.get(0, 2) + b.get(1, 1) + b.get(2, 0)
+	if s == "ooo" {
+		return 1
+	} else if s == "xxx" {
+		return 2
+	}
+	return 0
 }
 
 func main() {
